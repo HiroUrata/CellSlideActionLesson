@@ -55,9 +55,16 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
             
         }
         
-       
+        let cellPlus = UIContextualAction(style: .normal, title: "") { _, _, _ in
+            
+            self.cellContentsArray.insert(String(Int(self.cellContentsArray[indexPath.row])! + 1), at: indexPath.row + 1)
+            self.tableView.reloadData()
+            
+        }
+        cellPlus.image = UIImage(systemName: "plus.bubble")
+        cellPlus.backgroundColor = .systemGreen
         
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+        return UISwipeActionsConfiguration(actions: [deleteAction,cellPlus])
     }
     
     
