@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let cellContentsArray = ["1","2","3","4","5","6","7","8","9","10"]
+    lazy var cellContentsArray = ["1","2","3","4","5","6","7","8","9","10"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,20 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
         
     }
     
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "削除") { _,_,_  in
+                
+            self.cellContentsArray.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
+            self.tableView.reloadData()
+            
+        }
+        
+       
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
     
     
 }
