@@ -47,7 +47,20 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        let rightSlideMove = { () -> [UIContextualAction] in
+            
+            let slideActionArray = [UIContextualAction(style: .normal, title: "01", handler: { _, _, _ in
+                                    print("右のボタン01が押されました")}),
+                                    UIContextualAction(style: .normal, title: "02", handler: { _, _, _ in
+                                    print("右のボタン02が押されました")})]
+            
+            return slideActionArray
+        }()
         
+        rightSlideMove[0].backgroundColor = .systemIndigo
+        rightSlideMove[1].backgroundColor = .systemBlue
+        
+        return UISwipeActionsConfiguration(actions: rightSlideMove)
     }
     
     //左にスライドでhyouzi
